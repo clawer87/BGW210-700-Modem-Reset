@@ -40,3 +40,8 @@ To run the script, simply execute it from your terminal:
 
 ```bash
 python resetModem.py -p password
+```
+Or add it to your crontab
+```bash
+crontab -e
+```
