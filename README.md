@@ -45,3 +45,11 @@ Or add it to your crontab
 ```bash
 crontab -e
 ```
+
+## ⚖️ Disclaimer
+
+Use this script responsibly and at your own risk. Restarting your router will temporarily disrupt your internet connection. Ensure you understand the implications before deploying this in an automated fashion. This script is provided as-is, without warranty of any kind.
+
+## 🙏 Acknowledgments
+
+Special thanks to the Gemini AI assistant for the extensive debugging of this script, as well as for writing this readme!
