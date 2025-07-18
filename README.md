@@ -46,6 +46,27 @@ Or add it to your crontab
 crontab -e
 ```
 
+## Script Behavior:
+
+ * **Checks Internet:** The script will first ping 8.8.8.8 to check if your internet connection is active
+ * **Internet Working:** If the internet is working, the script will print a message and exit without doing anything further.
+ * **Internet Down:** If the internet is not working, the script will proceed to:
+   * Log into your router using the provided password.
+   * Initiate a restart of the router.
+   * Report success or failure.
+
+## 💡 How It Works (Briefly)
+
+The script leverages the requests library to simulate a web browser's interaction with your router's web interface.
+   * It first sends a GET request to the router's homepage and then to the restart.ha page.
+   * It parses the HTML response to extract a dynamic nonce value, which is essential for the router's security.
+   * It calculates an MD5 hash of your ACCESS_CODE combined with this nonce, mimicking the router's client-side JavaScript.
+   * It then sends a POST request with the login credentials to the router's login endpoint.
+   * Upon successful login (verified by the presence of the restart form), it extracts a new nonce from the restart page.
+   * Finally, it sends another POST request to the restart.ha endpoint with the restart command and the new nonce.
+   * Throughout the process, it carefully manages HTTP headers (like Referer and User-Agent) to appear as a legitimate browser.
+   * The subprocess module is used to run the system's ping command for internet connectivity checks.
+
 ## ⚖️ Disclaimer
 
 Use this script responsibly and at your own risk. Restarting your router will temporarily disrupt your internet connection. Ensure you understand the implications before deploying this in an automated fashion. This script is provided as-is, without warranty of any kind.
